@@ -41,7 +41,7 @@ function Chat(props) {
     });
 
     return () => unsubscribe();
-  }, []); // add room to the dependency array to re-run the effect when the room changes
+  }, [room, messageRef]); // add room to the dependency array to re-run the effect when the room changes
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +98,7 @@ function Chat(props) {
                   setMessage(e.target.value);
                 }}
                 value={message}
-                className="border-none mx-4 my-2 px-4 py-2 mr-2 focus:border-none focus:ring-0 focus:outline-none"
+                className="flex-grow border-none mx-4 my-2 px-4 py-2 mr-2 focus:border-none focus:ring-0 focus:outline-none"
               />
               <div className="border-l h-full flex items-center justify-center hover:bg-blue-500">
                 <button type="submit" className="px-4">
