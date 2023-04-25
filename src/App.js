@@ -3,6 +3,7 @@ import "./App.css";
 import Auth from "./components/Auth";
 
 import Cookies from "universal-cookie";
+import Chat from "./components/Chat";
 const cookie = new Cookies();
 
 function App() {
@@ -24,8 +25,7 @@ function App() {
       <div>
         {room ? (
           <div>
-            <h1>Chat</h1>
-            <h1>Room: {room}</h1>
+            <Chat />
           </div>
         ) : (
           <div>
