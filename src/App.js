@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import "./App.css";
 import Auth from "./components/Auth";
 
+import { auth } from "./firebase-config";
+import { signOut } from "firebase/auth";
+
 import Cookies from "universal-cookie";
 import Chat from "./components/Chat";
 const cookie = new Cookies();
@@ -11,6 +14,16 @@ function App() {
   const [room, setRoom] = useState(null);
 
   const roomRef = useRef(null);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      cookie.remove("auth-token");
+      setIsAuth(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (!isAuth) {
     return (
@@ -41,6 +54,8 @@ function App() {
             </button>
           </div>
         )}
+
+        <button onClick={handleSignOut}>Sign Out</button>
       </div>
     </React.Fragment>
   );
